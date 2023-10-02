@@ -18,6 +18,7 @@
             }
         }
         else if (a == 4) romaiString = "IV"
+        else if (a == 5) romaiString = "V";
 
         //if (a == 1) romaiString += "I";
         //else if (a == 2) romaiString += "II";
@@ -41,6 +42,10 @@
 
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(4), "IV");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(5), "V");
       });
     });
   </script>
