@@ -12,18 +12,23 @@
     function romaiOutput(a) {
         romaiString = "";
 
-        if (a == 4){
+        if (a == 9){
+            romaiString = "IX";
+        }
+        else if (a == 4){
             romaiString = "IV";
+        }
+        else if (a > 9) {
+            romaiInt = a - 10;
+            romaiString = "X" + romaiFor(romaiInt);
         }
         else if (a > 4) {
             romaiInt = a - 5;
             romaiString = "V" + romaiFor(romaiInt);
         }
         else if (a < 4){         
-            romaiString += romaiFor(a);
+            romaiString = romaiFor(a);
         }
-
-
    
         return romaiString;
     }
@@ -62,6 +67,32 @@
 
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(6), "VI");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(7), "VII");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(8), "VIII");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(9), "IX");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(10), "X");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(11), "XI");
+      });
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(12), "XII");
+      });
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(13), "XIII");
       });
     });
   </script>
