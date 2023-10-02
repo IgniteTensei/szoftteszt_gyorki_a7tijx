@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.20.0.css">
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.20.0.js"></script>
+</body>
+
+<script>
+    function fizzbuzz(a) { 
+    if ((fizzbuzzDivide(a, 5) || fizzbuzzInclude(a, "5")) && (fizzbuzzDivide(a, 3) || fizzbuzzInclude(a, "3"))) return "fizzbuzz";
+    else if (fizzbuzzDivide(a, 5) || fizzbuzzInclude(a, "5")) return "buzz";
+    else if (fizzbuzzDivide(a, 3) || fizzbuzzInclude(a, "3")) return "fizz";
+    else return String(a);
+    }
+
+    function fizzbuzzInclude(a, str) {
+        if(String(a).includes(str)) return true;
+    }
+
+    function fizzbuzzDivide(a, n){
+        if(a % n == 0) return true;
+    }
+
+    function fizzbuzzDouble(a, n){
+        fizzbuzzDivide(a, n) || fizzbuzzInclude(a, String(n))
+    }
+
+    function fizzbuzzStringBuilder(a){
+
+        if(fizzbuzzDouble(a, 3)){
+            fizzbuzzString += "fizz";
+        }
+
+        if(fizzbuzzDouble(a, 5)){
+            fizzbuzzString += "buzz";
+        }
+
+        if(fizzbuzzString.equal("fizz") || fizzbuzzString.equal("fizzbuzz") || fizzbuzzString.equal("fizzbuzz")) return fizzbuzzString;
+        else return String(a);
+    }
+  
+    QUnit.module('add', function() {
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(1), "1");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(2), "2");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(3), "fizz");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(4), "4");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(5), "buzz");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(15), "fizzbuzz");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(9), "fizz");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(10), "buzz");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(13), "fizz");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(14), "14");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(52), "buzz");
+      });
+
+      QUnit.test('fizzbuzz', function(assert) {
+        assert.equal(fizzbuzz(35), "fizzbuzz");
+      });
+
+    });
+  </script>
