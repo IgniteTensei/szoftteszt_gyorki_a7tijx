@@ -12,9 +12,16 @@
     function romaiOutput(a) {
         romaiString = "";
 
-        if (a == 1) romaiString += "I";
-        else if (a == 2) romaiString += "II";
-        else if (a == 3) romaiString += "III";
+        if(a  == 1 || a == 2 || a == 3){
+            for (var i = 0; i < a; i++) {
+                romaiString += "I"
+            }
+        }
+        else if (a == 4) romaiString = "IV"
+
+        //if (a == 1) romaiString += "I";
+        //else if (a == 2) romaiString += "II";
+        //else if (a == 3) romaiString += "III";
 
         return romaiString;
     }
@@ -30,6 +37,10 @@
       
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(3), "III");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(4), "IV");
       });
     });
   </script>
