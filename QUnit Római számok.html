@@ -11,11 +11,18 @@
 <script>
     function romaiOutput(a) {
       if (a == 1) return "I";
+      else if (a == 2) return "II";
     }
+
+    function romaiStringBuilder(a) {}
   
     QUnit.module('add', function() {
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(1), "I");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(2), "II");
       });
       
     });
