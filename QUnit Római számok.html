@@ -9,13 +9,14 @@
 </body>
 
 <script>
-    function romaiInput(a) {
-      return "";
+    function romaiOutput(a) {
+      if (a == 1) return "I";
     }
   
     QUnit.module('add', function() {
       QUnit.test('romai', function(assert) {
-        assert.equal(romaiInput(1), "I");
+        assert.equal(romaiOutput(1), "I");
       });
+      
     });
   </script>
