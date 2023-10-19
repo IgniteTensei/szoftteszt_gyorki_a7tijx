@@ -10,11 +10,11 @@
 
 <script>
 
-    function holdjaron(x, y, D){
+    function holdjaro(x, y, D){
 
       var direction = holdjaroDirection(D);
 
-      var position = holdjaro;
+      var position = holdjaroSpawn(x, y);
 
       var outputString = "X: " + String(x) + ", Y: " + String(y) + ", Direction: " + direction;
       return outputString;
@@ -64,6 +64,10 @@
 
       QUnit.test('holdjaro', function(assert) {
         assert.equal(String(holdjaroSpawn(0,0)), "0,0");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 0, "N"), "X: 0, Y: 0, Direction: N");
       });
 
     });
