@@ -34,6 +34,7 @@
     function holdjaroSpawn(x, y){
       var spawnPos = [0, 0];
       if (x > 8) return "Hiba"
+      if (y > 8) return "Hiba"
       return spawnPos;
     }
     
@@ -81,6 +82,10 @@
 
       QUnit.test('holdjaro', function(assert) {
         assert.equal(String(holdjaroSpawn(9, 1)), "Hiba");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(String(holdjaroSpawn(7, 9)), "Hiba");
       });
 
     });
