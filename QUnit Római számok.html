@@ -13,8 +13,8 @@
         var arabInput = n;
         var romaiString = "";
 
-        var arabSzamok = [50, 40, 10, 9, 5, 4, 1];
-        var romaiSzamok = ["L", "XL", "X", "IX", "V", "IV", "I"];
+        var arabSzamok = [100, 90, 50, 40, 10, 9, 5, 4, 1];
+        var romaiSzamok = ["C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
 
         while(arabInput != 0){
           for (var i = 0; i < arabSzamok.length; i++) {
@@ -108,6 +108,10 @@
 
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(74), "LXXIV");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(199), "CXCIX");
       });
     });
   </script>
