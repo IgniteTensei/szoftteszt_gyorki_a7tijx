@@ -16,7 +16,7 @@
 
       var position = holdjaroSpawn(x, y);
 
-      var outputString = "X: " + String(x) + ", Y: " + String(y) + ", Direction: " + direction;
+      var outputString = "X: " + String(position[0]) + ", Y: " + String(position[1]) + ", Direction: " + direction;
       return outputString;
     } 
 
@@ -35,6 +35,8 @@
       var spawnPos = [0, 0];
       if (x > 8) return "Hiba"
       if (y > 8) return "Hiba"
+
+      spawnPos = [x, y];
       return spawnPos;
     }
     
@@ -86,6 +88,10 @@
 
       QUnit.test('holdjaro', function(assert) {
         assert.equal(String(holdjaroSpawn(7, 9)), "Hiba");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(1, 2, "G"), "X: 1, Y: 2, Direction: ");
       });
 
     });
