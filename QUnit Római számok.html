@@ -10,20 +10,21 @@
 
 <script>
     function romaiOutput(n) {
+        var arabInput = n;
         var romaiString = "";
 
         var arabSzamok = [10, 9, 5, 4, 1];
         var romaiSzamok = ["X", "IX", "V", "IV", "I"];
 
-        while(n != 0){
+        while(arabInput != 0){
           for (var i = 0; i < arabSzamok.length; i++) {
-                if (n >= arabSzamok[i]){
-                  n -= arabSzamok[i];
+                if (arabInput >= arabSzamok[i]){
+                  arabInput -= arabSzamok[i];
                   romaiString += romaiSzamok[i];
+                  break;
                 }
           }
         }
-       
 
         return romaiString;
     }
@@ -87,6 +88,10 @@
 
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(15), "XV");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(30), "XXX");
       });
     });
   </script>
