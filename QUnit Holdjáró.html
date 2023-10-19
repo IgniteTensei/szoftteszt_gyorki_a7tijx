@@ -14,7 +14,7 @@
 
       var direction = holdjaroDirection(D);
 
-      var position = [x, y];
+      var position = holdjaro;
 
       var outputString = "X: " + String(x) + ", Y: " + String(y) + ", Direction: " + direction;
       return outputString;
@@ -32,7 +32,8 @@
     }
 
     function holdjaroSpawn(x, y){
-
+      var spawnPos = [x, y];
+      return spawnPos;
     }
     
   
@@ -59,6 +60,10 @@
 
       QUnit.test('holdjaro', function(assert) {
         assert.equal(holdjaroDirection("B"), "");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(String(holdjaroSpawn(0,0)), "0,0");
       });
 
     });
