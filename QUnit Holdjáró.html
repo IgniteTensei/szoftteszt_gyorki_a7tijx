@@ -33,5 +33,13 @@
         assert.equal(holdjaro("E"), "E");
       });
 
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro("e"), "");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro("B"), "");
+      });
+
     });
   </script>
