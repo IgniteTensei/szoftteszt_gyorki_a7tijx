@@ -10,13 +10,17 @@
 
 <script>
     function holdjaro(a) { 
-    return a;
+      var direction = a;
+
+      return direction;
     }
+    
   
     QUnit.module('holdjaro', function() {
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(1), 1);
+        assert.equal(holdjaro("N"), "N");
       });
+      
 
     });
   </script>
