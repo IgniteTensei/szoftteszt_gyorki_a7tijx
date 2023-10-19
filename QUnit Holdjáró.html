@@ -10,7 +10,12 @@
 
 <script>
     function holdjaro(a) { 
-      var direction = a;
+
+      var direction = "";
+
+      if (a == "N" || a == "S" || a == "W" || a == "E"){
+        direction = a;
+      }
 
       return direction;
     }
