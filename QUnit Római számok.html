@@ -9,42 +9,26 @@
 </body>
 
 <script>
-    function romaiOutput(a) {
-        romaiString = "";
+    function romaiOutput(n) {
+        var romaiString = "";
 
-        if (a == 9){
-            romaiString = "IX";
+        var arabSzamok = [10, 9, 5, 4, 1];
+        var romaiSzamok = ["X", "IX", "V", "IV", "I"];
+
+        while(n != 0){
+          for (var i = 0; i < arabSzamok.length; i++) {
+                if (n >= arabSzamok[i]){
+                  n -= arabSzamok[i];
+                  romaiString += romaiSzamok[i];
+                }
+          }
         }
-        else if (a == 4){
-            romaiString = "IV";
-        }
-        else if (a > 9) {
-            romaiInt = a - 10;
-            romaiString = "X" + romaiFor(romaiInt);
-        }
-        else if (a > 4) {
-            romaiInt = a - 5;
-            romaiString = "V" + romaiFor(romaiInt);
-        }
-        else if (a < 4){         
-            romaiString = romaiFor(a);
-        }
-   
+       
+
         return romaiString;
     }
-
-    function romaiFor(n) {
-        var stringBuilder = "";
-
-        for (var i = 0; i < n; i++) {
-                stringBuilder += "I";
-        }
-        
-
-        return stringBuilder;
-    }
   
-    QUnit.module('add', function() {
+    QUnit.module('romai', function() {
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(1), "I");
       });
@@ -88,11 +72,21 @@
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(11), "XI");
       });
+
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(12), "XII");
       });
+
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(13), "XIII");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(14), "XIV");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(15), "XV");
       });
     });
   </script>
