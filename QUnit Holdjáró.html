@@ -33,7 +33,7 @@
 
     function holdjaroSpawn(x, y){
       var spawnPos = [0, 0];
-      if (x > 8 ||y > 8) return spawnPos;
+      if (x > 8 || y > 8 || x < 0 || y < 0) return spawnPos;
 
       spawnPos = [x, y];
       return spawnPos;
