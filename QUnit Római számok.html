@@ -121,5 +121,13 @@
       QUnit.test('romai', function(assert) {
         assert.equal(romaiOutput(594), "DXCIV");
       });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(1293), "MCCXCIII");
+      });
+
+      QUnit.test('romai', function(assert) {
+        assert.equal(romaiOutput(1999), "MCMXCIX");
+      });
     });
   </script>
