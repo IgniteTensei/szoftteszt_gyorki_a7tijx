@@ -9,41 +9,56 @@
 </body>
 
 <script>
-    function holdjaro(a) { 
 
-      var direction = "";
+    function holdjaron(x, y, D){
 
-      if (a == "N" || a == "S" || a == "W" || a == "E"){
-        direction = a;
+      var direction = holdjaroDirection(D);
+
+      var position = [x, y];
+
+      var outputString = "X: " + String(x) + ", Y: " + String(y) + ", Direction: " + direction;
+      return outputString;
+    } 
+
+    function holdjaroDirection(D) { 
+
+      if (D == "N" || D == "S" || D == "W" || D == "E"){
+        return D;
       }
+      else{
+        return "";
+      }
+        
+    }
 
-      return direction;
+    function holdjaroSpawn(x, y){
+
     }
     
   
     QUnit.module('holdjaro', function() {
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro("N"), "N");
+        assert.equal(holdjaroDirection("N"), "N");
       });
       
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro("S"), "S");
+        assert.equal(holdjaroDirection("S"), "S");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro("W"), "W");
+        assert.equal(holdjaroDirection("W"), "W");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro("E"), "E");
+        assert.equal(holdjaroDirection("E"), "E");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro("e"), "");
+        assert.equal(holdjaroDirection("e"), "");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro("B"), "");
+        assert.equal(holdjaroDirection("B"), "");
       });
 
     });
