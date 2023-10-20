@@ -10,13 +10,14 @@
 
 <script>
 
-    function holdjaro(x, y, D, m){
+    function holdjaro(x, y, D, M_fb, M_lr){
 
       var direction = holdjaroDirection(D);
 
       var position = holdjaroSpawn(x, y);
 
-      var move = 
+      var moveFB = M_fb;
+      var moveLR = M_lr;
 
       var outputString = "X: " + String(position[0]) + ", Y: " + String(position[1]) + ", Direction: " + direction;
       return outputString;
@@ -39,6 +40,16 @@
 
       spawnPos = [x, y];
       return spawnPos;
+    }
+
+    //Forward +, Backward -
+    function holdjaroMoveForwardBackward(n, direction){
+
+    }
+
+    //Left +, Right -
+    function holdjaroMoveLeftRight(n, direction){
+
     }
     
   
