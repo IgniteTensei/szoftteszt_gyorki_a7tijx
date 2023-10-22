@@ -95,8 +95,14 @@
       var calcdPos= [position[0], position[1]];
 
       //X
-      if(calcdPos[0] > 8){
-        calcdPos[0] = calcdPos[0] % 8;
+      if(Math.abs(calcdPos[0]) > 8){
+        temp = calcdPos[0] % 8;
+        if(temp < 0){
+          calcdPos[0] = 8 + temp;
+        }
+        else{
+          calcdPos[0] = temp;
+        }
       }
 
       //Y
@@ -249,10 +255,14 @@
       QUnit.test('holdjaro', function(assert) {
         assert.equal(holdjaro(2, 0, "N", 0, 12), "X: 6, Y: 0, Direction: N");
       });
+
       QUnit.test('holdjaro', function(assert) {
         assert.equal(holdjaro(2, 0, "N", 0, 21), "X: 7, Y: 0, Direction: N");
       });
-   
+      
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(2, 0, "N", 0, -21), "X: 5, Y: 0, Direction: N");
+      });
 
 
     });
