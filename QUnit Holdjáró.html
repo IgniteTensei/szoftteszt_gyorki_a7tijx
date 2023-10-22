@@ -92,18 +92,30 @@
 
     function holdjaroMapCalc(position){
      
-      var calcdPos= [0,0];
-      calcdPos[0] = position[0];
-      calcdPos[1] = position[1];
+      var calcdPos= [position[0], position[1]];
 
-      if(calcdPos[0] > 8){
-        calcdPos[0] -= 8;
-        calcdPos[0] = 8 - calcdPos[0];
-      }
+      //X
+      /*if(calcdPos[0] > 8){
+        var temp = Math.floor(calcdPos[0] / 8);
+        var mod = calcdPos[0] % 8;
+        if(temp % 2 != 0){
+          calcdPos[0] = 8 - mod;
+        }
+        else{
+          calcdPos[0] = mod;
+        }
+      }*/
 
+      //Y
       if(calcdPos[1] > 8){
-        calcdPos[1] -= 8;
-        calcdPos[1] = 8 - calcdPos[1];
+        var temp = Math.floor(calcdPos[1] / 8);
+        var mod = calcdPos[1] % 8;
+        if(temp % 2 != 0){
+          calcdPos[1] = 8 - mod;
+        }
+        else{
+          calcdPos[1] = mod;
+        }
       }
 
       return calcdPos;
@@ -218,6 +230,15 @@
       QUnit.test('holdjaro', function(assert) {
         assert.equal(holdjaro(0, 0, "N", 11, 0), "X: 0, Y: 5, Direction: N");
       });
+      
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 0, "N", 18, 0), "X: 0, Y: 2, Direction: N");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 0, "N", 25, 0), "X: 0, Y: 7, Direction: N");
+      });
+   
 
     });
   </script>
