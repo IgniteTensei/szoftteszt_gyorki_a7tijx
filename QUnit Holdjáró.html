@@ -10,11 +10,13 @@
 
 <script>
 
-    function holdjaro(x, y, D, M_fb, M_lr){
+    function holdjaro(x, y, D, M_fb, M_lr, obst_x, obst_y){
 
       var direction = holdjaroDirection(D);
 
       var position = holdjaroSpawn(x, y);
+
+      var obstacle_position = [obst_x, obst_y];
 
       var move = [holdjaroMoveForwardBackward(M_fb, direction)[0] + holdjaroMoveLeftRight(M_lr, direction)[0],
                   holdjaroMoveForwardBackward(M_fb, direction)[1] + holdjaroMoveLeftRight(M_lr, direction)[1]];
@@ -152,15 +154,15 @@
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "N", 0, 0), "X: 0, Y: 0, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 0, 0, 8, 8), "X: 0, Y: 0, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(4, 7, "N", 0, 0), "X: 4, Y: 7, Direction: N");
+        assert.equal(holdjaro(4, 7, "N", 0, 0, 8, 8), "X: 4, Y: 7, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(1, 2, "G", 0, 0), "X: 1, Y: 2, Direction: ");
+        assert.equal(holdjaro(1, 2, "G", 0, 0, 8, 8), "X: 1, Y: 2, Direction: ");
       });
 
       QUnit.test('holdjaro', function(assert) {
@@ -172,7 +174,7 @@
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(1, 9, "N", 0, 0), "X: 0, Y: 0, Direction: N");
+        assert.equal(holdjaro(1, 9, "N", 0, 0, 8, 8), "X: 0, Y: 0, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
@@ -184,94 +186,99 @@
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(-1, -1, "N", 0, 0), "X: 0, Y: 0, Direction: N");
+        assert.equal(holdjaro(-1, -1, "N", 0, 0, 8, 8), "X: 0, Y: 0, Direction: N");
       });
       
       //Holdjáró mozgatása előre/hátra test
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "N", 1, 0), "X: 0, Y: 1, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 1, 0, 8, 8), "X: 0, Y: 1, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "W", -1, 0), "X: 1, Y: 0, Direction: W");
+        assert.equal(holdjaro(0, 0, "W", -1, 0, 8, 8), "X: 1, Y: 0, Direction: W");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "E", 1, 0), "X: 1, Y: 0, Direction: E");
+        assert.equal(holdjaro(0, 0, "E", 1, 0, 8, 8), "X: 1, Y: 0, Direction: E");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "S", -1, 0), "X: 0, Y: 1, Direction: S");
+        assert.equal(holdjaro(0, 0, "S", -1, 0, 8, 8), "X: 0, Y: 1, Direction: S");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(3, 2, "N", 4, 0), "X: 3, Y: 6, Direction: N");
+        assert.equal(holdjaro(3, 2, "N", 4, 0, 8, 8), "X: 3, Y: 6, Direction: N");
       });
 
       //Holdjáró mozgatása balra/jobbra test
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "N", 0, 1), "X: 1, Y: 0, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 0, 1, 8, 8), "X: 1, Y: 0, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "W", 0, 1), "X: 0, Y: 1, Direction: W");
+        assert.equal(holdjaro(0, 0, "W", 0, 1, 8, 8), "X: 0, Y: 1, Direction: W");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "E", 0, -3), "X: 0, Y: 3, Direction: E");
+        assert.equal(holdjaro(0, 0, "E", 0, -3, 8, 8), "X: 0, Y: 3, Direction: E");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(6, 0, "S", 0, 5), "X: 1, Y: 0, Direction: S");
+        assert.equal(holdjaro(6, 0, "S", 0, 5, 8, 8), "X: 1, Y: 0, Direction: S");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(6, 5, "S", 4, -1), "X: 7, Y: 1, Direction: S");
+        assert.equal(holdjaro(6, 5, "S", 4, -1, 8, 8), "X: 7, Y: 1, Direction: S");
       });
 
       //Térkép határai és a hold körbejárhatósága test
       //Észak-Dél körbejárhatóság
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "N", 11, 0), "X: 0, Y: 5, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 11, 0, 8, 8), "X: 0, Y: 5, Direction: N");
       });
       
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "N", 18, 0), "X: 0, Y: 2, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 18, 0, 8, 8), "X: 0, Y: 2, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "N", 25, 0), "X: 0, Y: 7, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 25, 0, 8, 8), "X: 0, Y: 7, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 1, "N", 11, 0), "X: 0, Y: 4, Direction: N");
+        assert.equal(holdjaro(0, 1, "N", 11, 0, 8, 8), "X: 0, Y: 4, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 1, "N", -11, 0), "X: 0, Y: 6, Direction: N");
+        assert.equal(holdjaro(0, 1, "N", -11, 0, 8, 8), "X: 0, Y: 6, Direction: N");
       });
 
       //Kelet-Nyugat körbejárhatóság
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(2, 0, "N", 0, 12), "X: 6, Y: 0, Direction: N");
+        assert.equal(holdjaro(2, 0, "N", 0, 12, 8, 8), "X: 6, Y: 0, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(2, 0, "N", 0, 21), "X: 7, Y: 0, Direction: N");
+        assert.equal(holdjaro(2, 0, "N", 0, 21, 8, 8), "X: 7, Y: 0, Direction: N");
       });
       
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(2, 0, "N", 0, -21), "X: 5, Y: 0, Direction: N");
+        assert.equal(holdjaro(2, 0, "N", 0, -21, 8, 8), "X: 5, Y: 0, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(2, 4, "N", -150, -121), "X: 1, Y: 2, Direction: N");
+        assert.equal(holdjaro(2, 4, "N", -150, -121, 8, 8), "X: 1, Y: 2, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(2, 4, "E", -150, -121), "X: 4, Y: 3, Direction: E");
+        assert.equal(holdjaro(2, 4, "E", -150, -121, 8, 8), "X: 4, Y: 3, Direction: E");
       });
 
+      //Akadály test
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(2, 4, "N", 5, 9, 4, 8), "X: 2, Y: 4, Direction: N");
+      });
 
     });
   </script>
