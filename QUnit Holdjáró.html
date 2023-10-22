@@ -107,9 +107,9 @@
       }*/
 
       //Y
-      if(calcdPos[1] > 8){
-        var temp = Math.floor(calcdPos[1] / 8);
-        var mod = calcdPos[1] % 8;
+      if(Math.abs(calcdPos[1]) > 8){
+        var temp = Math.floor(Math.abs(calcdPos[1]) / 8);
+        var mod = Math.abs(calcdPos[1]) % 8;
         if(temp % 2 != 0){
           calcdPos[1] = 8 - mod;
         }
@@ -237,6 +237,14 @@
 
       QUnit.test('holdjaro', function(assert) {
         assert.equal(holdjaro(0, 0, "N", 25, 0), "X: 0, Y: 7, Direction: N");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 1, "N", 11, 0), "X: 0, Y: 4, Direction: N");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 1, "N", -11, 0), "X: 0, Y: 6, Direction: N");
       });
    
 
