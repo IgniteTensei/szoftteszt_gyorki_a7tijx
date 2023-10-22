@@ -264,6 +264,14 @@
         assert.equal(holdjaro(2, 0, "N", 0, -21), "X: 5, Y: 0, Direction: N");
       });
 
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(2, 4, "N", -150, -121), "X: 1, Y: 2, Direction: N");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(2, 4, "E", -150, -121), "X: 4, Y: 3, Direction: E");
+      });
+
 
     });
   </script>
