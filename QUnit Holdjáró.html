@@ -15,7 +15,7 @@
       var direction = holdjaroDirection(D);
 
       var position = holdjaroSpawn(x, y);
-
+      
       var obstacle_position = [obst_x, obst_y];
 
       var move = [holdjaroMoveForwardBackward(M_fb, direction)[0] + holdjaroMoveLeftRight(M_lr, direction)[0],
@@ -24,8 +24,14 @@
       position[0] += move[0];
       position[1] += move[1];
 
-      position[0] = holdjaroMapCalc(position)[0];
-      position[1] = holdjaroMapCalc(position)[1];
+      if(holdjaroObstacleCheck(position, move, obstacle_position)){
+        position[0] = holdjaroMapCalc(position)[0];
+        position[1] = holdjaroMapCalc(position)[1];
+      }
+      else{
+        position[0] = holdjaroSpawn(x, y)[0];
+        position[1] = holdjaroSpawn(x, y)[1];
+      }
 
       var outputString = "X: " + String(position[0]) + ", Y: " + String(position[1]) + ", Direction: " + direction;
       return outputString;
@@ -122,9 +128,37 @@
       return calcdPos;
     }
 
-    function holdjaroObstacleCheck(position, move_vector, obst_position){
-      var move_n = (move_vector[1] - position[1]) / (move_vector[0] - position[0]);
-      var obst_n = (obst_position[1] - position[1]) / (obst_position[0] - position[0])
+    function holdjaroObstacleCheck(h_position, move_vector, obst_position){
+      var move_n = (move_vector[1] - h_position[1]) / (move_vector[0] - h_position[0]);
+      var obst_n = (obst_position[1] - h_position[1]) / (obst_position[0] - h_position[0])
+      if(move_n == obst_n){
+        if(obst_position[0] >= h_position[0]){
+          if(move_vector[0] >= h_position[0]){
+            if((move_vector[0] - h_position[0]) >= (obst_position[0] - h_position[0])){
+              return false;
+            }
+          }
+          else if(move_vector[0] < h_position[0]){
+            if((Math.abs(move_vector[0]) + h_position[0]) >= (8 - obst_position[0] + h_position[0])){
+              return false
+            }
+          }
+        }
+        else if(obst_position[0] < h_position[0]){
+          if(move_vector[0] >= h_position[0]){
+            if(((8 - h_position[0] + obst_position[0])) >= (move_vector[0] - h_position[0])){
+              return false;
+            }
+          }
+          else if(move_vector[0] < h_position[0]){
+            if((h_position[0] - obst_position[0]) <= (h_position[0] - move_vector[0])){
+              return false;
+            }
+          }
+        }
+      }
+
+      //OK
       return true;
     }
     
