@@ -16,8 +16,8 @@
 
       var position = holdjaroSpawn(x, y);
 
-      var move = [holdjaroMoveForwardBackward(M_fb, direction)[0] + holdjaroMoveLeftRight(M_fb, direction)[0],
-                  holdjaroMoveForwardBackward(M_fb, direction)[1] + holdjaroMoveLeftRight(M_fb, direction)[1]];
+      var move = [holdjaroMoveForwardBackward(M_fb, direction)[0] + holdjaroMoveLeftRight(M_lr, direction)[0],
+                  holdjaroMoveForwardBackward(M_fb, direction)[1] + holdjaroMoveLeftRight(M_lr, direction)[1]];
 
       position[0] += move[0];
       position[1] += move[1];
@@ -68,7 +68,13 @@
 
     //Right +, Left -
     function holdjaroMoveLeftRight(n, direction){
+      
       var MoveLR = [0, 0];
+
+      if (direction == "N"){
+        MoveLR[0] += n; 
+      }
+
       return MoveLR;
     }
     
