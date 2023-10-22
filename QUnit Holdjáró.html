@@ -47,7 +47,16 @@
 
     //Forward +, Backward -
     function holdjaroMoveForwardBackward(n, direction){
-      var MoveFB = [n, 0];
+
+      var MoveFB = [0, 0];
+
+      if (direction == "N"){
+        MoveFB[1] += n; 
+      }
+      else if (direction == "W"){
+        MoveFB[0] += n; 
+      }
+
       return MoveFB;
     }
 
@@ -124,11 +133,11 @@
       });
       
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "N", 1, 0), "X: 1, Y: 0, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 1, 0), "X: 0, Y: 1, Direction: N");
       });
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(0, 0, "W", 1, 0), "X: 0, Y: 1, Direction: W");
+        assert.equal(holdjaro(0, 0, "W", 1, 0), "X: 1, Y: 0, Direction: W");
       });
 
     });
