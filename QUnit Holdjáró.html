@@ -22,6 +22,9 @@
       position[0] += move[0];
       position[1] += move[1];
 
+      position[0] = holdjaroMapCalc(position)[0];
+      position[1] = holdjaroMapCalc(position)[1];
+
       var outputString = "X: " + String(position[0]) + ", Y: " + String(position[1]) + ", Direction: " + direction;
       return outputString;
     } 
@@ -85,6 +88,25 @@
       }
 
       return MoveLR;
+    }
+
+    function holdjaroMapCalc(position){
+     
+      var calcdPos= [0,0];
+      calcdPos[0] = position[0];
+      calcdPos[1] = position[1];
+
+      if(calcdPos[0] > 8){
+        calcdPos[0] -= 8;
+        calcdPos[0] = 8 - calcdPos[0];
+      }
+
+      if(calcdPos[1] > 8){
+        calcdPos[1] -= 8;
+        calcdPos[1] = 8 - calcdPos[1];
+      }
+
+      return calcdPos;
     }
     
   
