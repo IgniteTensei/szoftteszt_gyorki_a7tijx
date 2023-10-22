@@ -24,10 +24,8 @@
       position[0] += move[0];
       position[1] += move[1];
 
-      if(holdjaroObstacleCheck){
-        position[0] = holdjaroMapCalc(position)[0];
-        position[1] = holdjaroMapCalc(position)[1];
-      }
+      position[0] = holdjaroMapCalc(position)[0];
+      position[1] = holdjaroMapCalc(position)[1];
 
       var outputString = "X: " + String(position[0]) + ", Y: " + String(position[1]) + ", Direction: " + direction;
       return outputString;
@@ -99,7 +97,7 @@
       var calcdPos= [position[0], position[1]];
 
       //X
-      if(Math.abs(calcdPos[0]) > 8){
+      if(Math.abs(calcdPos[0]) > 8 || calcdPos[0] < 0){
         temp = calcdPos[0] % 8;
         if(temp < 0){
           calcdPos[0] = 8 + temp;
@@ -110,7 +108,7 @@
       }
 
       //Y
-      if(Math.abs(calcdPos[1]) > 8){
+      if(Math.abs(calcdPos[1]) > 8 || calcdPos[1] < 0){
         var temp = Math.floor(Math.abs(calcdPos[1]) / 8);
         var mod = Math.abs(calcdPos[1]) % 8;
         if(temp % 2 != 0){
@@ -127,7 +125,7 @@
     function holdjaroObstacleCheck(position, move_vector, obst_position){
       var move_n = (move_vector[1] - position[1]) / (move_vector[0] - position[0]);
       var obst_n = (obst_position[1] - position[1]) / (obst_position[0] - position[0])
-      return false;
+      return true;
     }
     
     //Tájolás test
