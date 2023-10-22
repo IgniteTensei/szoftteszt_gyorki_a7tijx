@@ -24,8 +24,10 @@
       position[0] += move[0];
       position[1] += move[1];
 
-      position[0] = holdjaroMapCalc(position)[0];
-      position[1] = holdjaroMapCalc(position)[1];
+      if(holdjaroObstacleCheck){
+        position[0] = holdjaroMapCalc(position)[0];
+        position[1] = holdjaroMapCalc(position)[1];
+      }
 
       var outputString = "X: " + String(position[0]) + ", Y: " + String(position[1]) + ", Direction: " + direction;
       return outputString;
@@ -120,6 +122,12 @@
       }
 
       return calcdPos;
+    }
+
+    function holdjaroObstacleCheck(position, move_vector, obst_position){
+      var move_n = (move_vector[1] - position[1]) / (move_vector[0] - position[0]);
+      var obst_n = (obst_position[1] - position[1]) / (obst_position[0] - position[0])
+      return false;
     }
     
     //Tájolás test
@@ -277,7 +285,11 @@
       //Akadály test
 
       QUnit.test('holdjaro', function(assert) {
-        assert.equal(holdjaro(2, 4, "N", 5, 9, 4, 8), "X: 2, Y: 4, Direction: N");
+        assert.equal(holdjaro(0, 0, "N", 4, 8, 2, 4), "X: 0, Y: 0, Direction: N");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 0, "N", -4, -8, 2, 4), "X: 0, Y: 0, Direction: N");
       });
 
     });
