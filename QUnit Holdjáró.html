@@ -66,7 +66,7 @@
       return MoveFB;
     }
 
-    //Left +, Right -
+    //Right +, Left -
     function holdjaroMoveLeftRight(n, direction){
       var MoveLR = [0, 0];
       return MoveLR;
@@ -152,6 +152,14 @@
 
       QUnit.test('holdjaro', function(assert) {
         assert.equal(holdjaro(0, 0, "S", -1, 0), "X: 0, Y: 1, Direction: S");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(3, 2, "N", 4, 0), "X: 3, Y: 6, Direction: N");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 0, "N", 0, 1), "X: 1, Y: 0, Direction: N");
       });
 
     });
