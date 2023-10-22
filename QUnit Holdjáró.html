@@ -77,6 +77,12 @@
       else if (direction == "W"){
         MoveLR[1] += n; 
       }
+      else if (direction == "E"){
+        MoveLR[1] -= n; 
+      }
+      else if (direction == "S"){
+        MoveLR[0] -= n; 
+      }
 
       return MoveLR;
     }
@@ -173,6 +179,14 @@
 
       QUnit.test('holdjaro', function(assert) {
         assert.equal(holdjaro(0, 0, "W", 0, 1), "X: 0, Y: 1, Direction: W");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(0, 0, "E", 0, -3), "X: 0, Y: 3, Direction: E");
+      });
+
+      QUnit.test('holdjaro', function(assert) {
+        assert.equal(holdjaro(6, 0, "S", 0, 5), "X: 1, Y: 0, Direction: S");
       });
 
     });
